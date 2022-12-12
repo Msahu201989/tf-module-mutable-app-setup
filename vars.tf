@@ -8,4 +8,4 @@ variable "vpc_id" {}
 variable "BASTION_NODE" {}
 variable "app_port_no" {}
 variable "vpc_cidr" {}
-variable "PROMETHEUS_NODE" {}
+#variable "PROMETHEUS_NODE" {}

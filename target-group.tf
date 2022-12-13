@@ -26,7 +26,7 @@ resource "aws_lb_listener_rule" "rule" {
 
   condition {
     host_header {
-      values = ["${var.name}-${var.env}.roboshop.internal"]
+      values = ["${var.env}. mukeshsahu20.online"]
     }
   }
 

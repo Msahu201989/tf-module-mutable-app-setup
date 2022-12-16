@@ -38,15 +38,14 @@ resource "aws_autoscaling_group" "asg" {
   }
 }
 
-
-#
-#  instance_market_options {
-#    market_type = "spot"
-#  }
-#
-#
-#  user_data = base64encode(templatefile("${path.module}/ansible-pull.sh", {
-#    COMPONENT = var.name
-#    ENV       = var.env
-#  }))
-#}
+resource "aws_autoscaling_policy" "cpu-tracking-policy" {
+  name        = "whenCPULoadIncrease"
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+}
